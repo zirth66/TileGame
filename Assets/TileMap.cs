@@ -19,7 +19,7 @@ public class TileMap : MonoBehaviour {
 		BuildMesh();
 	}
 
-	void BuildMesh()
+	public void BuildMesh()
 	{	//Vertices always one more than number of tiles
 		int numTiles = size_x * size_z;
 		int numTris = numTiles * 2;
