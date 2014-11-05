@@ -6,7 +6,7 @@ using System.Collections;
 [RequireComponent (typeof(MeshCollider))]
 [ExecuteInEditMode]
 
-public class TileMap : MonoBehaviour {
+public class TileMapGenerator : MonoBehaviour {
 
 	//Number of tiles on map
 	public int size_x = 100;
@@ -77,9 +77,10 @@ public class TileMap : MonoBehaviour {
 		// Assign our mesh to our filter/renderer/collider
 		MeshFilter mesh_filter = GetComponent<MeshFilter>();
 		MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
-		MeshCollider mesh_colider = GetComponent<MeshCollider> ();
+		MeshCollider mesh_collider = GetComponent<MeshCollider> ();
 
 		mesh_filter.mesh = mesh;
+		mesh_collider.sharedMesh = mesh;
 		Debug.Log ("Done mesh!");
 
 	}
