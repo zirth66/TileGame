@@ -24,7 +24,7 @@ public class TileMapMouse : MonoBehaviour
 		{
 			int x = Mathf.FloorToInt(hitInfo.point.x / _tileMapGenerator.tileSize);
 			int z = Mathf.FloorToInt(hitInfo.point.z / _tileMapGenerator.tileSize);
-			Debug.Log("Tile: " +x+", " +z);
+			//Debug.Log("Tile: " +x+", " +z);
 
 			currentTileCoord.x = x;
 			currentTileCoord.z = z;
