@@ -4,9 +4,8 @@ using System.Collections;
 [RequireComponent (typeof(MeshFilter))]
 [RequireComponent (typeof(MeshRenderer))]
 [RequireComponent (typeof(MeshCollider))]
-[ExecuteInEditMode]
 
-public class TileMapGenerator : MonoBehaviour {
+public class TGMap : MonoBehaviour {
 
 	//Number of tiles on map
 	public int size_x = 100;
@@ -19,55 +18,12 @@ public class TileMapGenerator : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		BuildMesh();
+		//BuildMesh();
 
 	}
     
-    //Loops through our terrainTiles object and pools out every chunk of pixels that is a tile and returns them
-    Color[][] ChopUpTiles() 
-    {
-        int numTilesPerRow = terrainTiles.width / tileResolution;
-        int numRows = terrainTiles.height / tileResolution;
-        
-        Color[][] tiles = new Color[numTilesPerRow * numRows][];
-        
-        for(int y=0; y < numRows; y++)
-        {
-            for(int x=0; x < numTilesPerRow; x++)
-            {
-              tiles[y* numTilesPerRow + x] = terrainTiles.GetPixels( x * tileResolution, y * tileResolution, tileResolution, tileResolution);
-            }
-        }
-        return tiles;
-    }
     
-	void BuildTexture()
-	{		
-        
-        int texWidth = size_x * tileResolution;
-		int texHeight = size_z * tileResolution;
-		Texture2D texture = new Texture2D(texWidth, texHeight);
-        
-        Color[][] tiles = ChopUpTiles();
-
-		for (int y=0; y < size_x; y++) 
-		{
-			for (int x=0; x < size_z; x++) 
-			{
-                Color[] p = tiles[ Random.Range( 0, 4 )];
-                texture.SetPixels( x * tileResolution, y * tileResolution, tileResolution, tileResolution, p);
-			}
-		}
-        texture.filterMode = FilterMode.Bilinear;
-        texture.wrapMode = TextureWrapMode.Clamp;
-		texture.Apply();
-        
-        MeshRenderer mesh_renderer = GetComponent<MeshRenderer>();
-        mesh_renderer.sharedMaterials[0].mainTexture = texture;
-		
-		Debug.Log ("Done Texture!");
-
-	}
+	
 	public void BuildMesh()
 	{	//Vertices always one more than number of tiles
 		int numTiles = size_x * size_z;
